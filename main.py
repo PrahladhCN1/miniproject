@@ -4,6 +4,8 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipe
 import requests
 from bs4 import BeautifulSoup
 import unicodedata
+from googletrans import Translator
+import sentencepiece  # Ensure this import is added
 
 # Load the sentiment analysis model
 @st.cache(allow_output_mutation=True)
@@ -27,7 +29,6 @@ summarization_tokenizer, summarization_model = load_summarization_model()
 # Load translation model
 @st.cache(allow_output_mutation=True)
 def load_translator():
-    from googletrans import Translator
     return Translator()
 
 translator = load_translator()
@@ -98,4 +99,3 @@ if st.button('Analyze'):
         st.write("Translated to Hindi:", translated_text_hi)
         st.write("Translated to Kannada:", translated_text_kn)
         st.write("Translated to Telugu:", translated_text_te)
-
