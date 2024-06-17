@@ -1,0 +1,6 @@
+streamlit
+torch
+transformers
+beautifulsoup4
+requests
+googletrans==4.0.0-rc1
