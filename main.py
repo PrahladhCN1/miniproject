@@ -5,10 +5,10 @@ import requests
 from bs4 import BeautifulSoup
 import unicodedata
 from googletrans import Translator
-import sentencepiece  # Ensure this import is added
+import sentencepiece
 
 # Load the sentiment analysis model
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_sentiment_model():
     tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
     model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
@@ -17,7 +17,7 @@ def load_sentiment_model():
 tokenizer, sentiment_model = load_sentiment_model()
 
 # Load the summarization model
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_summarization_model():
     model_name = "google/pegasus-cnn_dailymail"
     tokenizer = PegasusTokenizer.from_pretrained(model_name)
@@ -27,7 +27,7 @@ def load_summarization_model():
 summarization_tokenizer, summarization_model = load_summarization_model()
 
 # Load translation model
-@st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_translator():
     return Translator()
 
